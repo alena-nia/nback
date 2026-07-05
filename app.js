@@ -180,17 +180,19 @@ if ("speechSynthesis" in window) {
 
 function speak(letter) {
   if (!("speechSynthesis" in window)) return;
-  const u = new SpeechSynthesisUtterance(letter);
+  // iOS reads an uppercase single letter as "capital A" — lowercase says just the letter name
+  const u = new SpeechSynthesisUtterance(String(letter).toLowerCase());
   if (voice) u.voice = voice;
   u.rate = 0.95;
   speechSynthesis.cancel();
   speechSynthesis.speak(u);
 }
 
-const hapticInput = document.querySelector(".haptic-tap input");
+const hapticLabel = document.querySelector(".haptic-tap");
 function buzz() {
   if (navigator.vibrate) { navigator.vibrate(90); return; } // Android + others
-  if (hapticInput) { try { hapticInput.click(); } catch {} } // iOS 17.4+ haptic fallback
+  // iOS has no Vibration API; toggling a <input switch> emits a light haptic on 17.4+
+  try { if (hapticLabel) hapticLabel.click(); } catch {}
 }
 
 function colorHex(name) {
