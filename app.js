@@ -190,7 +190,8 @@ function speak(letter) {
 
 const hapticLabel = document.querySelector(".haptic-tap");
 function buzz() {
-  if (navigator.vibrate) { navigator.vibrate(90); return; } // Android + others
+  // distinct short-short-long error pattern; must run inside a user gesture on Android
+  if (navigator.vibrate) { navigator.vibrate([35, 30, 90]); return; }
   // iOS has no Vibration API; toggling a <input switch> emits a light haptic on 17.4+
   try { if (hapticLabel) hapticLabel.click(); } catch {}
 }
@@ -300,13 +301,12 @@ function respond(ch) {
   game.responded[ch] = true;
   const hit = isTarget(game.index, ch);
   if (hit) { game.stats[ch].hits++; game.right++; }
-  else { game.stats[ch].fa++; game.wrong++; }
+  else { game.stats[ch].fa++; game.wrong++; buzz(); } // buzz here: inside the tap gesture
   flash(ch, hit);
   updateLiveScore();
 }
 
 function flash(ch, good) {
-  if (!good) buzz(); // vibrate on any error
   if (!settings.feedback) return;
   const btn = $(`.match-btn[data-channel="${ch}"]`);
   if (!btn) return;
