@@ -90,8 +90,20 @@ body {
   background: none; border: 1px solid var(--line); color: var(--muted);
   padding: 14px; border-radius: var(--radius); cursor: pointer; font-size: 15px;
 }
-.history-link { margin-top: 12px; text-align: center; }
+.home-links { display: flex; gap: 10px; margin-top: 12px; }
+.home-links .ghost { flex: 1; text-align: center; }
 .best { text-align: center; color: var(--muted); font-size: 13px; margin-top: 14px; min-height: 18px; }
+
+/* How-to page */
+.prose { font-size: 15px; line-height: 1.6; color: var(--text); overflow-y: auto; padding-bottom: 20px; }
+.prose h3 { font-size: 16px; margin: 22px 0 6px; }
+.prose p { margin: 0 0 10px; color: var(--muted); }
+.prose ul, .prose ol { margin: 0 0 12px; padding-left: 20px; color: var(--muted); }
+.prose li { margin-bottom: 5px; }
+.prose strong { color: var(--text); }
+.prose .ok { color: var(--good); font-weight: 600; }
+.prose .no { color: var(--bad); font-weight: 600; }
+.prose-foot { font-size: 13px; opacity: 0.8; margin-top: 16px; }
 
 .hist-title { font-size: 20px; margin: 0; }
 .hist-summary { text-align: center; margin-bottom: 16px; }

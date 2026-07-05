@@ -57,8 +57,69 @@
 
     <button id="startBtn" class="primary">Start</button>
 
-    <button id="historyBtn" class="ghost history-link">View history</button>
+    <div class="home-links">
+      <button id="howtoBtn" class="ghost">How to play</button>
+      <button id="historyBtn" class="ghost">History</button>
+    </div>
     <p class="best" id="bestLine"></p>
+  </section>
+
+  <!-- HOW TO PLAY -->
+  <section id="howto" class="screen hidden">
+    <header class="hud">
+      <button id="howtoBackBtn" class="ghost" aria-label="back">&times;</button>
+      <h2 class="hist-title">How to play</h2>
+    </header>
+    <div class="prose">
+      <p>N-Back is a memory exercise. Cues appear one at a time, and your job is to
+      spot when the current cue is the <strong>same as the one a few steps earlier</strong>.</p>
+
+      <h3>A single turn</h3>
+      <p>Each turn, one square in the grid lights up. It can carry up to four cues at once:</p>
+      <ul>
+        <li><strong>Position</strong> — which square lit up</li>
+        <li><strong>Number</strong> — the digit shown</li>
+        <li><strong>Color</strong> — the digit's color</li>
+        <li><strong>Sound</strong> — a spoken letter</li>
+      </ul>
+
+      <h3>What "N" means</h3>
+      <p>N is how many turns back you compare against. At <strong>N&nbsp;=&nbsp;2</strong> you check
+      whether the current cue matches the one from <strong>2 turns ago</strong>.</p>
+
+      <h3>Your job</h3>
+      <p>When a cue matches the one N turns back, tap that cue's button
+      (Position, Number, Color, or Sound). Each cue is judged on its own — the
+      position can match while the color doesn't, so you might tap one button,
+      several, or none in a turn. On a computer you can also use the keys
+      <strong>A&nbsp;S&nbsp;D&nbsp;F</strong>.</p>
+
+      <h3>Scoring &amp; feedback</h3>
+      <p>A correct tap flashes <span class="ok">green</span>; a wrong tap or a match you
+      missed flashes <span class="no">red</span>, and the ✓ / ✗ counter under the grid
+      updates live. Your block score is the share of matches you caught, with false
+      taps counting against you.</p>
+
+      <h3>New to this? Start easy</h3>
+      <p>It's meant to be hard. Build up gradually:</p>
+      <ol>
+        <li>Turn off every channel except one (say <strong>Position</strong>).</li>
+        <li>Set <strong>N&nbsp;=&nbsp;1</strong>.</li>
+        <li>Play a few blocks, then raise N to 2, then add a second channel.</li>
+      </ol>
+      <p>Two channels at 2-back is already genuinely challenging; all four at once is
+      expert territory. There's no rush.</p>
+
+      <h3>Settings</h3>
+      <ul>
+        <li><strong>Channels</strong> — which cues are active</li>
+        <li><strong>Steps back (N)</strong> — the difficulty</li>
+        <li><strong>Pace</strong> — how fast turns go</li>
+        <li><strong>Trials</strong> — how long a block is</li>
+        <li><strong>Adaptive N</strong> — nudges N up after a near-perfect block</li>
+      </ul>
+      <p class="prose-foot">Everything is saved on your device only — nothing is uploaded.</p>
+    </div>
   </section>
 
   <!-- HISTORY -->

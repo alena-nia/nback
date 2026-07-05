@@ -62,7 +62,7 @@ let settings = loadSettings();
 
 /* ---------- DOM ---------- */
 const $ = (sel) => document.querySelector(sel);
-const screens = { home: $("#home"), game: $("#game"), results: $("#results"), history: $("#history") };
+const screens = { home: $("#home"), game: $("#game"), results: $("#results"), history: $("#history"), howto: $("#howto") };
 function show(name) {
   for (const key in screens) screens[key].classList.toggle("hidden", key !== name);
 }
@@ -220,7 +220,7 @@ function buildControls() {
     const btn = document.createElement("button");
     btn.className = "match-btn";
     btn.dataset.channel = ch;
-    btn.innerHTML = `${LABELS[ch]} match<small>press&nbsp;${KEYS[ch].toUpperCase()}</small>`;
+    btn.textContent = `${LABELS[ch]} match`;
     btn.onclick = () => respond(ch);
     wrap.appendChild(btn);
   });
@@ -532,6 +532,8 @@ $("#clearHistBtn").onclick = () => {
 
 $("#historyBtn").onclick = () => { renderHistoryScreen(); show("history"); };
 $("#histBackBtn").onclick = () => { show("home"); renderHome(); };
+$("#howtoBtn").onclick = () => show("howto");
+$("#howtoBackBtn").onclick = () => { show("home"); renderHome(); };
 $("#histClearBtn").onclick = () => {
   if (confirm("Clear all saved history and best scores?")) {
     clearHistory();

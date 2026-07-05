@@ -1,4 +1,4 @@
-const CACHE = "nback-v11";
+const CACHE = "nback-v12";
 const ASSETS = [
   "./",
   "./index.html",
