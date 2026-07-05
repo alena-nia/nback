@@ -1,0 +1,121 @@
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#0e1116" />
+<title>N-Back</title>
+<link rel="manifest" href="manifest.webmanifest" />
+<link rel="icon" href="icon.svg" />
+<link rel="apple-touch-icon" href="apple-touch-icon.png" />
+<link rel="stylesheet" href="styles.css" />
+
+<main id="app">
+  <!-- HOME / SETTINGS -->
+  <section id="home" class="screen">
+    <h1 class="logo">N&#8209;Back</h1>
+    <p class="tagline">Working&#8209;memory training.</p>
+
+    <div class="setting">
+      <label>Steps back (N)</label>
+      <div class="stepper">
+        <button data-n-dec aria-label="decrease">&minus;</button>
+        <span id="nValue">2</span>
+        <button data-n-inc aria-label="increase">+</button>
+      </div>
+    </div>
+
+    <div class="setting">
+      <label>Channels</label>
+      <div class="chips" id="channelChips">
+        <button class="chip" data-channel="position">Position</button>
+        <button class="chip" data-channel="number">Number</button>
+        <button class="chip" data-channel="color">Color</button>
+        <button class="chip" data-channel="sound">Sound</button>
+      </div>
+    </div>
+
+    <div class="setting">
+      <label>Pace</label>
+      <div class="chips" id="paceChips">
+        <button class="chip" data-pace="4000">Relaxed</button>
+        <button class="chip" data-pace="3000">Normal</button>
+        <button class="chip" data-pace="2000">Fast</button>
+      </div>
+    </div>
+
+    <div class="setting">
+      <label>Trials per block</label>
+      <div class="stepper">
+        <button data-t-dec aria-label="decrease">&minus;</button>
+        <span id="tValue">20</span>
+        <button data-t-inc aria-label="increase">+</button>
+      </div>
+    </div>
+
+    <div class="setting toggles">
+      <button class="toggle" id="adaptiveToggle" data-on="false">Adaptive N</button>
+      <button class="toggle" id="feedbackToggle" data-on="true">Instant feedback</button>
+    </div>
+
+    <button id="startBtn" class="primary">Start</button>
+
+    <button id="historyBtn" class="ghost history-link">View history</button>
+    <p class="best" id="bestLine"></p>
+  </section>
+
+  <!-- HISTORY -->
+  <section id="history" class="screen hidden">
+    <header class="hud">
+      <button id="histBackBtn" class="ghost" aria-label="back">&times;</button>
+      <h2 class="hist-title">History</h2>
+    </header>
+    <div id="histSummary" class="hist-summary"></div>
+    <div id="histChart" class="history-chart"></div>
+    <div id="histLegend" class="legend"></div>
+    <div class="result-actions">
+      <button id="histClearBtn" class="ghost">Clear history</button>
+    </div>
+  </section>
+
+  <!-- GAME -->
+  <section id="game" class="screen hidden">
+    <header class="hud">
+      <button id="quitBtn" class="ghost" aria-label="quit">&times;</button>
+      <div class="progress"><div id="progressBar"></div></div>
+      <span id="hudN" class="hud-n">N&#8202;=&#8202;2</span>
+    </header>
+
+    <div class="grid" id="grid" aria-hidden="true">
+      <!-- 9 cells injected -->
+    </div>
+
+    <div class="live-score" id="liveScore"></div>
+
+    <div class="controls" id="controls">
+      <!-- match buttons injected -->
+    </div>
+  </section>
+
+  <!-- RESULTS -->
+  <section id="results" class="screen hidden">
+    <h2>Block complete</h2>
+    <div id="nChangeBanner" class="n-banner hidden"></div>
+    <div id="scoreRings" class="rings"></div>
+    <div id="resultDetail" class="result-detail"></div>
+
+    <h3 class="chart-title">Progress</h3>
+    <div id="historyChart" class="history-chart"></div>
+    <div id="chartLegend" class="legend"></div>
+
+    <div class="result-actions">
+      <button id="againBtn" class="primary">Again</button>
+      <div class="row">
+        <button id="homeBtn" class="ghost">Settings</button>
+        <button id="clearHistBtn" class="ghost">Clear history</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- hidden switch: toggling it produces a light haptic tap on iOS 17.4+ (fallback for no Vibration API) -->
+<label class="haptic-tap" aria-hidden="true"><input type="checkbox" switch tabindex="-1"></label>
+
+<script src="app.js"></script>
